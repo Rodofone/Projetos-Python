@@ -11,8 +11,8 @@ if sys.platform == "win32":
     base = "Win32GUI"
 
 setup(
-    name="Criptografrador",
-    version="1.1",
+    name="Criptografador",
+    version="1.2",
     description="Ele criptografa e descriptografa mensagens criadas por ele mesmo",
     options={"build_exe": build_exe_options},
     executables=[Executable("tela.py", base=base)]

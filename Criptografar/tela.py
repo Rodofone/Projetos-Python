@@ -14,13 +14,19 @@ def janela_opcao():
 # Layout da janela
 def janela_cripto():
     sg.theme('DarkBlue')
-    layout = [
-        [sg.Text('Criptografar')],
-        [sg.HSep()],
+    layout_l = [
         [sg.Text('Mensagem:')], 
-        [sg.Multiline(key='mensagem1', size=(20, 5))],
+        [sg.Multiline(key='mensagem1', size=(20, 5))]
+    ]
+    layout_r = [
         [sg.Text('Mensagem Criptografada:')],
         [sg.Output(size=(20, 5))],
+    ]
+
+    layout = [
+        [sg.T('Criptografar', font='_ 18', justification='c', expand_x=True)],
+        [sg.HSep()],
+        [sg.Col(layout_l), sg.Col(layout_r)],
         [sg.Button('Voltar'), sg.Button('Criptografar')]
     ]
     return sg.Window('Criptografar', layout=layout, finalize=True)
@@ -28,13 +34,20 @@ def janela_cripto():
 # Layout da janela
 def janela_descripto():
     sg.theme('DarkBlue')
-    layout = [
-        [sg.Text('Descriptografar')],
-        [sg.HSep()],
+    layout_l = [
         [sg.Text('Mensagem Criptografada:')],
-        [sg.Multiline(key='mensagem2', size=(20, 5))],
+        [sg.Multiline(key='mensagem2', size=(20, 5))]
+    ]
+
+    layout_r = [
         [sg.Text('Mensagem Descriptografada:')],
-        [sg.Output(size=(20, 5))],
+        [sg.Output(size=(20, 5))]
+    ]
+
+    layout = [
+        [sg.T('Descriptografar', font='_ 18', justification='c', expand_x=True)],
+        [sg.HSep()],
+        [sg.Col(layout_l), sg.Col(layout_r)],
         [sg.Button('Voltar'), sg.Button('Descriptografar')]
     ]
     return sg.Window('Descriptografar', layout=layout, finalize=True)
@@ -58,14 +71,14 @@ while True:
             janela2 = janela_cripto()
         else:
             janela3 = janela_descripto()
-        janela1.hide()
+        janela1.close()
     # Voltando para janela principal
     if window == janela2 and event == 'Voltar':
-        janela2.hide()
-        janela1.un_hide()
+        janela2.close()
+        janela1 = janela_opcao()
     if window == janela3 and event == 'Voltar':
-        janela3.hide()
-        janela1.un_hide()
+        janela3.close()
+        janela1 = janela_opcao()
     # Evento dos botões
     if window == janela2 and event == 'Criptografar':
         frase = values['mensagem1']
